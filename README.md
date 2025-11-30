@@ -23,16 +23,16 @@ This project implements a custom-trained **YOLOv8** model deployed on a **Raspbe
 ## 🛠️ Tech Stack & Hardware
 
 ### Hardware
-* **Raspberry Pi 3 Model B+** (Controller)
-* **USB Webcam** (Input)
-* **LED & 220Ω Resistor** (Output Alarm)
-* **Jumper Wires** (Female-to-Female)
+* **Raspberry Pi 3 Model B+** (Controller)  
+* **USB Webcam** (Input)  
+* **LED & 220Ω Resistor** (Output Alarm)  
+* **Jumper Wires** (Female-to-Female)  
 
 ### Software
-* **Model Training:** YOLOv8 (Ultralytics) on Google Colab (T4 GPU).
-* **Inference Engine:** TensorFlow Lite Runtime.
-* **Image Processing:** OpenCV (cv2).
-* **Language:** Python 3.11.
+* **Model Training:** YOLOv8 (Ultralytics) on Google Colab (T4 GPU).  
+* **Inference Engine:** TensorFlow Lite Runtime.  
+* **Image Processing:** OpenCV (`cv2`).  
+* **Language:** Python 3.11.  
 
 ---
 
@@ -40,68 +40,76 @@ This project implements a custom-trained **YOLOv8** model deployed on a **Raspbe
 
 The system uses a visual/audible alarm triggered by **GPIO Pin 18**.
 
-* **Pin 18** → Resistor → LED (+) Long Leg
-* **GND Pin** → LED (-) Short Leg
+* **Pin 18** → Resistor → LED (+) Long Leg  
+* **GND Pin** → LED (-) Short Leg  
 
 ---
 
 ## 🚀 Installation & Setup
 
 ### 1. Clone the Repository
+
 ```bash
-git clone [https://github.com/valiant-varun/Helmet-Detection-System.git](https://github.com/valiant-varun/Helmet-Detection-System.git)
+git clone https://github.com/valiant-varun/Helmet-Detection-System.git
 cd Helmet-Detection-System
+```
 
-Here is the Markdown code for the second half of your README, matching the text you pasted. You can copy this and append it to the rest of your file.
-
-````markdown
 ### 2. Set Up Virtual Environment
+
 *Note: This step is critical to avoid NumPy/OpenCV version conflicts on Raspberry Pi OS.*
+
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-````
+```
 
-### 3\. Install Dependencies
+### 3. Install Dependencies
 
 ```bash
 pip3 install -r requirements.txt
 ```
 
------
+---
 
 ## 🎥 How to Run
 
-1.  Connect your webcam and LED circuit.
-2.  Make sure you are inside the virtual environment (`source venv/bin/activate`).
-3.  Run the main script:
-    ```bash
-    python3 run_demo.py
-    ```
+1. Connect your webcam and LED circuit.
+
+2. Make sure you are inside the virtual environment:
+
+   ```bash
+   source venv/bin/activate
+   ```
+
+3. Run the main script:
+
+   ```bash
+   python3 run_demo.py
+   ```
 
 **System Logic:**
 
-  * **Green Text:** Helmet Detected → Circuit OFF (Safe).
-  * **Red Text + LED ON:** No Helmet Detected → Alarm Triggered (Unsafe).
+* **Green Text:** Helmet Detected → Circuit OFF (Safe).
+* **Red Text + LED ON:** No Helmet Detected → Alarm Triggered (Unsafe).
 
------
+---
 
 ## 🧠 Methodology
 
-1.  **Data Collection:** Used `collect_images.py` to capture \~400 images of "helmet" vs "no\_helmet" states to fix background bias issues.
-2.  **Training:** Trained a YOLOv8-Nano Classification model on Google Colab for 50 epochs.
-3.  **Optimization:** Exported the model to `.tflite` (Float32) for compatibility with the Raspberry Pi's ARM architecture.
-4.  **Deployment:** Wrote `run_demo.py` to handle the inference loop and hardware interrupts.
+1. **Data Collection:** Used `collect_images.py` to capture ~400 images of "helmet" vs "no_helmet" states to fix background bias issues.
+2. **Training:** Trained a YOLOv8-Nano Classification model on Google Colab for 50 epochs.
+3. **Optimization:** Exported the model to `.tflite` (Float32) for compatibility with the Raspberry Pi's ARM architecture.
+4. **Deployment:** Wrote `run_demo.py` to handle the inference loop and hardware interrupts.
 
------
+---
 
 ## 📈 Future Scope
 
-  * Integration with a GSM module to send SMS alerts.
-  * 3D printed enclosure for a standalone "Smart Bike" unit.
-  * Training on night-vision data for low-light performance.
+* Integration with a GSM module to send SMS alerts.
+* 3D-printed enclosure for a standalone "Smart Bike" unit.
+* Training on night-vision data for low-light performance.
 
------
+---
 
 **Author:** Varun
 
